@@ -29,4 +29,9 @@ Passwords are never stored or sent anywhere. Use dummy passwords only.
 - Could add a breach check (Have I Been Pwned API)
 
 ## What I learned
-(Yahan apne words mein 3-4 lines likho)
+I learned about the word "ENTROPY" that means its about both strengh, length and character variety. Ater that 
+2) Bug: aaaaaaaaaaaa took medium rating, because tool doesnot see the variety. Also I put unique character to clear this mistake.
+3) Pattern attacks: P@ssw0rd and Welcome@2024 according to mathematics its seem to be strong but from the attackers POV its not. They know this trick before we know. 
+4) Testing: When I test these 14 passwords then I checked together with the help of AI the bugs seems immedietly (12/14 to 14/14).
+5) Design: Put both files LOGIC (checker.py) and TESTING in different files so that I don't write the code again.
+6) Git: Install this GIT by my own and do everything individually at the very first time.
