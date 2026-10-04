@@ -43,7 +43,22 @@ def has_sequence(password):
                 return True
     return False
 
+COMMON_WORDS = ["password", "welcome", "admin", "login", "letmein",
+                "qwerty", "iloveyou", "monkey", "dragon"]
 
+LEET_MAP = str.maketrans({"@": "a", "0": "o", "3": "e", "$": "s",
+                          "1": "i", "5": "s", "7": "t"})
+
+
+def has_common_word(password):
+    p = password.lower()
+    plain = re.sub(r"[^a-z]", "", p)
+    leet = re.sub(r"[^a-z]", "", p.translate(LEET_MAP))
+    for word in COMMON_WORDS:
+        for version in (plain, leet):
+            if version.startswith(word) and len(version) <= len(word) + 4:
+                return True
+    return False
 def check_password(password):
     feedback = []
     entropy = calculate_entropy(password)
@@ -70,6 +85,9 @@ def check_password(password):
     if has_sequence(password):
         entropy -= 10
         feedback.append("Sequences (1234, abcd, qwerty) avoid karo.")
+    if has_common_word(password):
+        entropy -= 30
+        feedback.append("Common word + chhote badlav (P@ssw0rd, Welcome@2024) hackers ko pehle se pata hote hain.")
     if password.lower() in COMMON:
         entropy = min(entropy, 10)
         feedback.append("Ye common passwords list mein hai! Bilkul use mat karo.")
